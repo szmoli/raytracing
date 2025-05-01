@@ -24,6 +24,7 @@ int main(int cargs, char** vargs) {
                 fprintf(file, "\n");
             }
         }
+        printf("%d/%d lines processed.\n", y + 1, img_h);
     }
 
     fclose(file);
