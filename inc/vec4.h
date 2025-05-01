@@ -1,16 +1,16 @@
 #ifndef VEC4_H
 #define VEC4_H
 
-#include "math.h"
-#include "stdio.h"
-#include "malloc.h"
+#include <math.h>
+#include <stdio.h>
+#include <malloc.h>
 
-typedef struct vec4 {
+typedef struct {
     float x;
     float y;
     float z;
     float w;
-};
+} vec4;
 
 /**
  * Negates the given vector.
@@ -18,7 +18,7 @@ typedef struct vec4 {
  * @return Negated vector
  */
 vec4 vnegate(vec4 v) {
-    return vec4 {-v.x, -v.y, -v.z, -v.w};
+    return (vec4){-v.x, -v.y, -v.z, -v.w};
 }
 
 /**
@@ -28,7 +28,7 @@ vec4 vnegate(vec4 v) {
  * @return Result from the addition
  */
 vec4 vadd(vec4 u, vec4 v) {
-    return vec4 {u.x + v.x, u.y + v.y, u.z + v.z, u.w + v.w};
+    return (vec4){u.x + v.x, u.y + v.y, u.z + v.z, u.w + v.w};
 }
 
 /**
@@ -48,7 +48,7 @@ vec4 vsub(vec4 u, vec4 v) {
  * @return Result from the scaling
  */
 vec4 vscale(vec4 v, float s) {
-    return vec4 {v.x * s, v.y * s, v.z * s, v.w * s};
+    return (vec4){v.x * s, v.y * s, v.z * s, v.w * s};
 }
 
 /**
@@ -71,7 +71,7 @@ float vdot(vec4 u, vec4 v) {
  * @return The cross product
  */
 vec4 vcross(vec4 u, vec4 v) {
-    return vec4 {
+    return (vec4){
         u.y * v.z - u.z * v.y,
         u.z * v.x - u.x * v.z,
         u.x * v.y - u.y * v.x,
@@ -100,7 +100,7 @@ float vlength(vec4 v) {
 vec4 vnormalize(vec4 v) {
     float len = vlength(v);
     if (len == 0.0f) {
-        return vec4 {0.0f, 0.0f, 0.0f, 0.0f};
+        return (vec4){0.0f, 0.0f, 0.0f, 0.0f};
     }
     return vscale(v, 1 / vlength(v));
 }
