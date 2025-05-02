@@ -1,32 +1,32 @@
-#include "stdio.h"
-#include "math.h"
+#include <stdio.h>
+#include <math.h>
+#include "../inc/vec4.h"
+#include "../inc/rgba.h"
+
+#include "../inc/glad.h"
+
+#define RGFW_IMPLEMENTATION
+#include "../inc/RGFW.h"
 
 int main(int cargs, char** vargs) {
-    const int img_w = 256;
-    const int img_h = 256;
+    const float aspect_ratio = 16.0f / 10.0f;
+    const int win_w = 1000;
+    const int win_h = win_w / aspect_ratio;
 
-    FILE* file = fopen("renders/render0.ppm", "w");
-    printf("started rendering...\n");
+    RGFW_window* win = RGFW_createWindow("Raytracing", RGFW_RECT(0, 0, win_w, win_h), RGFW_windowCenter | RGFW_windowNoResize);
+    RGFW_window_makeCurrent(win);
 
-    fprintf(file, "P3\n");
-    fprintf(file, "%d %d\n", img_w, img_h);
-    fprintf(file, "255\n");
-    for (int y = 0; y < img_h; ++y) {
-        for (int x = 0; x < img_w; ++x) {
-            float r = (float)x / (img_w - 1);
-            float g = (float)y / (img_h - 1);
-            float b = 0;
-            int ir = (int)(r * 255);
-            int ig = (int)(g * 255);
-            int ib = (int)(b * 255);
-            fprintf(file, "%d %d %d", ir, ig, ib);
-            if (!(y == img_h - 1 && x == img_w - 1)) {
-                fprintf(file, "\n");
-            }
+    while (RGFW_window_shouldClose(win) == 0) {
+        RGFW_event* ev = RGFW_window_checkEvent(win);
+        switch (win->event.type) {
+        case RGFW_quit:
+            RGFW_window_setShouldClose(win);
+            break;        
+        default:
+            break;
         }
-        printf("%d/%d lines processed.\n", y + 1, img_h);
-    }
+    }    
 
-    fclose(file);
-    printf("finished rendering.\n");
+    RGFW_window_close(win);
+    return 0;
 }
