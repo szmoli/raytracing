@@ -85,7 +85,7 @@ vec4 vcross(vec4 u, vec4 v) {
  * @return The length of the vector
  */
 float vlength(vec4 v) {
-    return fsqrt(v.x * v.x
+    return sqrtf(v.x * v.x
                + v.y * v.y
                + v.z * v.z
                + v.w * v.w

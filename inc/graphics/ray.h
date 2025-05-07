@@ -1,7 +1,7 @@
 #ifndef RAY_H
 #define RAY_H
 
-#include "vec4.h"
+#include "../geometry/vec4.h"
 
 typedef struct {
     vec4 orig;     // point of origin
