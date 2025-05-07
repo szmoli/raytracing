@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <math.h>
-#include "../inc/vec4.h"
-#include "../inc/rgba.h"
+#include "../inc/geometry/vec4.h"
 
-#include "../inc/glad.h"
+#include "../inc/graphics/rgba.h"
+#include "../inc/graphics/glad.h"
 
 #define RGFW_IMPLEMENTATION
-#include "../inc/RGFW.h"
+#include "../inc/graphics/RGFW.h"
 
 int main(int cargs, char** vargs) {
     const float aspect_ratio = 16.0f / 10.0f;
